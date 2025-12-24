@@ -27,6 +27,7 @@ public abstract  class AbstractLogger implements Logger, Publisher {
     public void log(LogLevel level, String message) {
         if(level.getValue() <= this.level.getValue()) {
             write(message);
+            notifySubscribers(message);
         }
 
         if(nextLogger != null) {
